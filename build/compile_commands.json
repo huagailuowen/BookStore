@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build",
+  "command": "/usr/bin/g++  -I/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src  -Ofast -g -o CMakeFiles/code.dir/src/accounts.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/accounts.cpp",
+  "file": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/accounts.cpp"
+},
+{
+  "directory": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build",
+  "command": "/usr/bin/g++  -I/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src  -Ofast -g -o CMakeFiles/code.dir/src/main.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/main.cpp",
+  "file": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/main.cpp"
+}
+]

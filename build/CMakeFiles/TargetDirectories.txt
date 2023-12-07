@@ -1,0 +1,3 @@
+/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles/code.dir
+/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles/rebuild_cache.dir

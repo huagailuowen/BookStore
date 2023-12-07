@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Bookstore",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "code::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-code-Debug-29731dd939dbfb21d4f3.json",
+					"name" : "code",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/mnt/c/Users/\u5468\u5bb8\u6e90/Desktop/\u5927\u5b66/\u5b66\u4e60/\u7a0b\u5e8f/Bookstore-2023/build",
+		"source" : "/mnt/c/Users/\u5468\u5bb8\u6e90/Desktop/\u5927\u5b66/\u5b66\u4e60/\u7a0b\u5e8f/Bookstore-2023"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
