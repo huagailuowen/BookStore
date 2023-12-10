@@ -83,10 +83,38 @@ CMakeFiles/code.dir/src/accounts.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/accounts.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/accounts.cpp -o CMakeFiles/code.dir/src/accounts.cpp.s
 
+CMakeFiles/code.dir/src/books.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/src/books.cpp.o: ../src/books.cpp
+CMakeFiles/code.dir/src/books.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/code.dir/src/books.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/src/books.cpp.o -MF CMakeFiles/code.dir/src/books.cpp.o.d -o CMakeFiles/code.dir/src/books.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/books.cpp
+
+CMakeFiles/code.dir/src/books.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/src/books.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/books.cpp > CMakeFiles/code.dir/src/books.cpp.i
+
+CMakeFiles/code.dir/src/books.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/books.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/books.cpp -o CMakeFiles/code.dir/src/books.cpp.s
+
+CMakeFiles/code.dir/src/log.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/src/log.cpp.o: ../src/log.cpp
+CMakeFiles/code.dir/src/log.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/code.dir/src/log.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/src/log.cpp.o -MF CMakeFiles/code.dir/src/log.cpp.o.d -o CMakeFiles/code.dir/src/log.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/log.cpp
+
+CMakeFiles/code.dir/src/log.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/src/log.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/log.cpp > CMakeFiles/code.dir/src/log.cpp.i
+
+CMakeFiles/code.dir/src/log.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/log.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/log.cpp -o CMakeFiles/code.dir/src/log.cpp.s
+
 CMakeFiles/code.dir/src/main.cpp.o: CMakeFiles/code.dir/flags.make
 CMakeFiles/code.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/code.dir/src/main.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/code.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/code.dir/src/main.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/src/main.cpp.o -MF CMakeFiles/code.dir/src/main.cpp.o.d -o CMakeFiles/code.dir/src/main.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/main.cpp
 
 CMakeFiles/code.dir/src/main.cpp.i: cmake_force
@@ -97,19 +125,71 @@ CMakeFiles/code.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/main.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/main.cpp -o CMakeFiles/code.dir/src/main.cpp.s
 
+CMakeFiles/code.dir/src/memory.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/src/memory.cpp.o: ../src/memory.cpp
+CMakeFiles/code.dir/src/memory.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/code.dir/src/memory.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/src/memory.cpp.o -MF CMakeFiles/code.dir/src/memory.cpp.o.d -o CMakeFiles/code.dir/src/memory.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/memory.cpp
+
+CMakeFiles/code.dir/src/memory.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/src/memory.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/memory.cpp > CMakeFiles/code.dir/src/memory.cpp.i
+
+CMakeFiles/code.dir/src/memory.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/memory.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/memory.cpp -o CMakeFiles/code.dir/src/memory.cpp.s
+
+CMakeFiles/code.dir/src/mytype.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/src/mytype.cpp.o: ../src/mytype.cpp
+CMakeFiles/code.dir/src/mytype.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/code.dir/src/mytype.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/src/mytype.cpp.o -MF CMakeFiles/code.dir/src/mytype.cpp.o.d -o CMakeFiles/code.dir/src/mytype.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/mytype.cpp
+
+CMakeFiles/code.dir/src/mytype.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/src/mytype.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/mytype.cpp > CMakeFiles/code.dir/src/mytype.cpp.i
+
+CMakeFiles/code.dir/src/mytype.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/mytype.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/mytype.cpp -o CMakeFiles/code.dir/src/mytype.cpp.s
+
+CMakeFiles/code.dir/src/opt.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/src/opt.cpp.o: ../src/opt.cpp
+CMakeFiles/code.dir/src/opt.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/code.dir/src/opt.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/src/opt.cpp.o -MF CMakeFiles/code.dir/src/opt.cpp.o.d -o CMakeFiles/code.dir/src/opt.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/opt.cpp
+
+CMakeFiles/code.dir/src/opt.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/src/opt.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/opt.cpp > CMakeFiles/code.dir/src/opt.cpp.i
+
+CMakeFiles/code.dir/src/opt.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/src/opt.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/opt.cpp -o CMakeFiles/code.dir/src/opt.cpp.s
+
 # Object files for target code
 code_OBJECTS = \
 "CMakeFiles/code.dir/src/accounts.cpp.o" \
-"CMakeFiles/code.dir/src/main.cpp.o"
+"CMakeFiles/code.dir/src/books.cpp.o" \
+"CMakeFiles/code.dir/src/log.cpp.o" \
+"CMakeFiles/code.dir/src/main.cpp.o" \
+"CMakeFiles/code.dir/src/memory.cpp.o" \
+"CMakeFiles/code.dir/src/mytype.cpp.o" \
+"CMakeFiles/code.dir/src/opt.cpp.o"
 
 # External object files for target code
 code_EXTERNAL_OBJECTS =
 
 code: CMakeFiles/code.dir/src/accounts.cpp.o
+code: CMakeFiles/code.dir/src/books.cpp.o
+code: CMakeFiles/code.dir/src/log.cpp.o
 code: CMakeFiles/code.dir/src/main.cpp.o
+code: CMakeFiles/code.dir/src/memory.cpp.o
+code: CMakeFiles/code.dir/src/mytype.cpp.o
+code: CMakeFiles/code.dir/src/opt.cpp.o
 code: CMakeFiles/code.dir/build.make
 code: CMakeFiles/code.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable code"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable code"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/code.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

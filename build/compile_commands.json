@@ -6,7 +6,32 @@
 },
 {
   "directory": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build",
+  "command": "/usr/bin/g++  -I/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src  -Ofast -g -o CMakeFiles/code.dir/src/books.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/books.cpp",
+  "file": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/books.cpp"
+},
+{
+  "directory": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build",
+  "command": "/usr/bin/g++  -I/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src  -Ofast -g -o CMakeFiles/code.dir/src/log.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/log.cpp",
+  "file": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/log.cpp"
+},
+{
+  "directory": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build",
   "command": "/usr/bin/g++  -I/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src  -Ofast -g -o CMakeFiles/code.dir/src/main.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/main.cpp",
   "file": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/main.cpp"
+},
+{
+  "directory": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build",
+  "command": "/usr/bin/g++  -I/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src  -Ofast -g -o CMakeFiles/code.dir/src/memory.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/memory.cpp",
+  "file": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/memory.cpp"
+},
+{
+  "directory": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build",
+  "command": "/usr/bin/g++  -I/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src  -Ofast -g -o CMakeFiles/code.dir/src/mytype.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/mytype.cpp",
+  "file": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/mytype.cpp"
+},
+{
+  "directory": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/build",
+  "command": "/usr/bin/g++  -I/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src  -Ofast -g -o CMakeFiles/code.dir/src/opt.cpp.o -c /mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/opt.cpp",
+  "file": "/mnt/c/Users/周宸源/Desktop/大学/学习/程序/Bookstore-2023/src/opt.cpp"
 }
 ]

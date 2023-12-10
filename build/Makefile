@@ -153,6 +153,54 @@ src/accounts.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/accounts.cpp.s
 .PHONY : src/accounts.cpp.s
 
+src/books.o: src/books.cpp.o
+.PHONY : src/books.o
+
+# target to build an object file
+src/books.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/books.cpp.o
+.PHONY : src/books.cpp.o
+
+src/books.i: src/books.cpp.i
+.PHONY : src/books.i
+
+# target to preprocess a source file
+src/books.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/books.cpp.i
+.PHONY : src/books.cpp.i
+
+src/books.s: src/books.cpp.s
+.PHONY : src/books.s
+
+# target to generate assembly for a file
+src/books.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/books.cpp.s
+.PHONY : src/books.cpp.s
+
+src/log.o: src/log.cpp.o
+.PHONY : src/log.o
+
+# target to build an object file
+src/log.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/log.cpp.o
+.PHONY : src/log.cpp.o
+
+src/log.i: src/log.cpp.i
+.PHONY : src/log.i
+
+# target to preprocess a source file
+src/log.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/log.cpp.i
+.PHONY : src/log.cpp.i
+
+src/log.s: src/log.cpp.s
+.PHONY : src/log.s
+
+# target to generate assembly for a file
+src/log.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/log.cpp.s
+.PHONY : src/log.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -177,6 +225,78 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/memory.o: src/memory.cpp.o
+.PHONY : src/memory.o
+
+# target to build an object file
+src/memory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/memory.cpp.o
+.PHONY : src/memory.cpp.o
+
+src/memory.i: src/memory.cpp.i
+.PHONY : src/memory.i
+
+# target to preprocess a source file
+src/memory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/memory.cpp.i
+.PHONY : src/memory.cpp.i
+
+src/memory.s: src/memory.cpp.s
+.PHONY : src/memory.s
+
+# target to generate assembly for a file
+src/memory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/memory.cpp.s
+.PHONY : src/memory.cpp.s
+
+src/mytype.o: src/mytype.cpp.o
+.PHONY : src/mytype.o
+
+# target to build an object file
+src/mytype.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/mytype.cpp.o
+.PHONY : src/mytype.cpp.o
+
+src/mytype.i: src/mytype.cpp.i
+.PHONY : src/mytype.i
+
+# target to preprocess a source file
+src/mytype.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/mytype.cpp.i
+.PHONY : src/mytype.cpp.i
+
+src/mytype.s: src/mytype.cpp.s
+.PHONY : src/mytype.s
+
+# target to generate assembly for a file
+src/mytype.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/mytype.cpp.s
+.PHONY : src/mytype.cpp.s
+
+src/opt.o: src/opt.cpp.o
+.PHONY : src/opt.o
+
+# target to build an object file
+src/opt.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/opt.cpp.o
+.PHONY : src/opt.cpp.o
+
+src/opt.i: src/opt.cpp.i
+.PHONY : src/opt.i
+
+# target to preprocess a source file
+src/opt.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/opt.cpp.i
+.PHONY : src/opt.cpp.i
+
+src/opt.s: src/opt.cpp.s
+.PHONY : src/opt.s
+
+# target to generate assembly for a file
+src/opt.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/opt.cpp.s
+.PHONY : src/opt.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -189,9 +309,24 @@ help:
 	@echo "... src/accounts.o"
 	@echo "... src/accounts.i"
 	@echo "... src/accounts.s"
+	@echo "... src/books.o"
+	@echo "... src/books.i"
+	@echo "... src/books.s"
+	@echo "... src/log.o"
+	@echo "... src/log.i"
+	@echo "... src/log.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/memory.o"
+	@echo "... src/memory.i"
+	@echo "... src/memory.s"
+	@echo "... src/mytype.o"
+	@echo "... src/mytype.i"
+	@echo "... src/mytype.s"
+	@echo "... src/opt.o"
+	@echo "... src/opt.i"
+	@echo "... src/opt.s"
 .PHONY : help
 
 
