@@ -1,5 +1,6 @@
 #ifndef LOG
 #define LOG
+#include <memory>
 #include <string>
 #include "memory.h"
 #include "mytype.h"

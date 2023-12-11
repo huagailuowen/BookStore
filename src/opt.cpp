@@ -1,14 +1,17 @@
 #include "opt.h"
+#include "accounts.h"
 #include "log.h"
 #include "mytype.h"
 #include <iostream>
 #include <sstream>
 #include<string>
+#include <utility>
 using std::string;
 extern AccountData Accountdata; 
 extern LogData Logdata;
 extern BookData Bookdata;
 extern vector<std::pair<Userid, int>>userstack;
+extern vector<MyISBN>theselected;
 bool Readcommand()
 {
     string command;
@@ -109,10 +112,62 @@ bool readcommand(const string &command,std::ostringstream& oss,int &typ)
 
 
 //todo
-bool su(vector<string>list,std::ostringstream &oss);
-bool logout(vector<string>list,std::ostringstream &oss);
-bool regi(vector<string>list,std::ostringstream &oss);
-bool passwd(vector<string>list,std::ostringstream &oss);
+bool su(vector<string>list,std::ostringstream &oss)
+{
+    if(list.size()>=3)return false;
+    Userid Id;Password Pd("\"");
+    if(list.size()<=1)return false;
+    if(!Isuserid(list[1], Id))return false;
+    if(list.size()==3){
+        if(!Ispassword(list[2], Pd))
+            return false;
+    }
+    Account theaccount=Accountdata.quiry(quiry_type::userid,Id);
+    if(theaccount.empty())return false;
+    if(!theaccount.getinto(Pd,userstack.back().second)){
+        return false;
+    }
+    userstack.push_back(std::make_pair(theaccount.user() , (int)theaccount.privilege()));
+    theselected.push_back(MyISBN(""));
+    return true;
+}
+bool logout(vector<string>list,std::ostringstream &oss)
+{
+    if(userstack.size()==1)return false;
+    userstack.pop_back();
+    theselected.pop_back();
+    return true;
+}
+
+bool regi(vector<string>list,std::ostringstream &oss)
+{
+    if(list.size()!=4)return false;
+    Userid Id;Password Pd;Username Nam;
+    if(!Isuserid(list[1], Id))return false;
+    if(!Ispassword(list[2], Pd))return false;
+    if(!Isusername(list[3], Nam))return false;
+    Account tmp=Accountdata.quiry(quiry_type::userid, Id);
+    if(!tmp.empty())return false;
+    tmp=Account(Id,Nam,power_type::customer,Pd);
+    Accountdata.adduser(tmp);
+    return true;
+}
+bool passwd(vector<string>list,std::ostringstream &oss)
+{
+    Userid Id;Password Pd(""),newPd;
+    if(list.size()<3||list.size()>4)return false;
+    if(!Isuserid(list[1], Id))return false;
+    if(!Ispassword(list.back(), newPd))return false;
+    if(list.size()==4){
+        if(!Ispassword(list[2], Pd))return false;
+    }
+    Account tmp=Accountdata.quiry(quiry_type::userid, Id);
+    if(tmp.empty())return false;
+    if((int)tmp.privilege()!=7&&tmp.pass()!=Pd)return false;
+    tmp=Account(tmp.user(),tmp.nam(),tmp.privilege(),newPd);
+    Accountdata.update(Id, newPd);
+    return true;
+}
 bool useradd(vector<string>list,std::ostringstream &oss);
 bool del(vector<string>list,std::ostringstream &oss);
 bool show(vector<string>list,std::ostringstream &oss);

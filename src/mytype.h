@@ -1,11 +1,12 @@
 #ifndef MYTYPE
 #define MYTYPE
 #include <string>
+#include <vector>
 #include "memory.h"
 using std::string;
 class AccountData;
 class BookData;
-enum class quiry_type { All,ISBN , name , author , keyword  };
+enum class quiry_type { All/*共有*/,ISBN , name , author , keyword ,userid,username };
 enum class power_type { none=0,customer=1,crew=3, owner=7 };
 
 enum class command_type {
@@ -39,6 +40,10 @@ template <const int len> struct Mystring {
   operator string();
   string tostr();
   void gethash();
+  int size()const;
+  char& operator[](const int &index);
+  char operator[](const int &index)const;
+  
   bool operator<(Mystring &b);
   bool operator==(Mystring &b);
   bool operator>(Mystring &b);
@@ -57,6 +62,15 @@ using Bookname = Mystring<60>;
 using Username = Mystring<30>;
 using Password = Mystring<30>;
 using Keyword = Mystring<60>;
+bool IsISBN(const string &s,MyISBN&);
+bool Isuserid(const string &s,Userid&);
+bool Isauthor(const string &s,Myauthor&);
+bool Isbookname(const string &s,Bookname &);
+bool Isusername(const string &s,Username &);
+
+bool Ispassword(const string &s,Password&);
+bool Iskeyword(const string &s,Keyword&);
+void Getkeywordlist(const Keyword&,std::vector<string>&);
 
 // struct MyISBN{
 

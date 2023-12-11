@@ -29,6 +29,10 @@ class BookData{
     BookData(string &);
     std::vector<MyISBN>quirybook(quiry_type,vector<string>);
     std::any quirybookdetails(quiry_type,MyISBN);
+    void addbook(Book);
+    void modifybook(Book,Book);
+    
+    //判重
 
 };
 #endif
