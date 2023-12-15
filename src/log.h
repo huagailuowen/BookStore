@@ -6,14 +6,17 @@
 #include "mytype.h"
 class Log{
     Userid id;
+    int power;
     Mystring<200> command;
     public:
     Log ()=default;
-    Log(Userid i,string s)
+    Log(Userid i,int p,string s)
     {
         id=i;
+        power=p;
         command=s;
     }
+    friend class LogData;
 };
 class LogData{
     int commandnum=0,billnum=0;
@@ -25,11 +28,13 @@ class LogData{
     int Billnum(){return billnum;}
     LogData()=default;
     LogData(string &);
-    std::pair<double,double> financesum(int count=-1);
-    void reportfinance();
-    void reportemployee();
+    std::pair<double,double> financesum(int count);
+    void reportfinance(std::ostringstream &oss);
+    void reportemployee(std::ostringstream &oss);
+    void reportlog(std::ostringstream &oss);
+    
     void addlog(int,Log);
-    void chgbill(int comnum,double val);
+    void chgbill(double val);
     
 };
 

@@ -9,11 +9,12 @@ class Account{
     Userid id;
     Username name;
     power_type power;
-    Password passport;
+    Password password;
     public:
     friend class MyMemoryClass<class Tkey, class Tvalue>;
+    friend class AccountData;
     Account()=default;
-    Account(Userid id,Username name,power_type power,Password passport);
+    Account(Userid id_,Username name_,power_type power_,Password password_);
     bool empty();
     bool getinto(const Password&,const int&);
     power_type privilege();
@@ -28,7 +29,7 @@ class AccountData{
     AccountData()=default;
     AccountData(const string &);
     Account quiry(quiry_type,std::any);
-    //找不到返回userid="$"
+    //找不到返回userid="#
     void del(Userid);
     void update(Userid,Password);
     void adduser(Account);
