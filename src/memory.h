@@ -1,12 +1,13 @@
 #ifndef MY_MEMORY_CLASS
 #define MY_MEMORY_CLASS
+// #include "mytype.h"
 #include <cassert>
 #include <cstddef>
 #include <ctime>
 #include <ios>
 #include <vector>
 #include <fstream>
-
+extern int TEST;
 using std::string;
 using std::fstream;
 using std::ifstream;
@@ -15,10 +16,17 @@ const int MAXblocknum=500;
 const int blocklength=300;
 template<class Tkey,class Tvalue>
 class MyMemoryClass {
+  friend class AccountData;
 private:
+public:
     fstream file;
     string file_name;
 public:
+    MyMemoryClass& operator=(const MyMemoryClass &b)
+    {
+      file_name=b.file_name;
+      return *this;
+    }
     class Head{
         public:
         int blocknum=0;
@@ -48,11 +56,11 @@ public:
 
     MyMemoryClass(const string& file_name) : file_name(file_name) {}
     int getaddtimes();
-    void initialise(string FN = "",bool is_new=1);
+    void initialise(string FN = "",bool is_new=0);
     void insert(Tkey key,Tvalue val);
 
     std::vector<Tvalue> find(Tkey key);
-    Tvalue find(Tkey key,Tvalue val);
+    std::vector<Tvalue> find(Tkey key,Tvalue val);
     
     std::vector<Tvalue> findsegment(Tkey L,Tkey R);
     
@@ -69,6 +77,7 @@ public:
 #include <ctime>
 #include <ios>
 #include <vector>
+#include <iostream>
 
 
 #include <fstream>
@@ -132,6 +141,7 @@ void MyMemoryClass<Tkey, Tvalue>::initialise(string FN, bool is_new) {
     file_name = FN;
   // if(!is_new)return;
   // if()
+  if(is_new)file.open(file_name, std::ios::out),file.close();
   file.open(file_name, std::ios::app);
   if (file.tellp() != 0) {
     file.close();
@@ -147,7 +157,10 @@ template <class Tkey, class Tvalue>
 void MyMemoryClass<Tkey, Tvalue>::insert(Tkey key, Tvalue val) {
   file.open(file_name, std::ios::out | std::ios::in);
   Head H;
+  
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
+  
+  
   if (H.blocknum == 0) {
     // file.seekp(sizeof(Head));
     Block block;
@@ -225,16 +238,18 @@ void MyMemoryClass<Tkey, Tvalue>::insert(Tkey key, Tvalue val) {
 }
 template <class Tkey, class Tvalue>
 std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::find(Tkey key) {
-  // std::cerr<<key.tostr()<<'\n';
   std::vector<Tvalue> Ans;
   file.open(file_name, std::ios::out | std::ios::in);
   Head H;
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
-  // std::cerr<<H.blocknum<<'\n';
   if (H.blocknum == 0) {
+    file.close();
     return Ans;
   }
-  // std::cerr<<H.blocknum<<'\n';
+  // if(file_name=="sjtuLog_basic"){
+  // std::cerr<<'*'<<H.blocknum<<'\n';
+
+  // }
   int las = 0, beg = H.blocknum;
   for (int i = 0; i < H.blocknum; i++) {
     if (i && (key < H.indexkey[i])) {
@@ -266,17 +281,15 @@ std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::find(Tkey key) {
 }
 
 template <class Tkey, class Tvalue>
-Tvalue MyMemoryClass<Tkey, Tvalue>::find(Tkey key,Tvalue val) {
-  // std::cerr<<key.tostr()<<'\n';
+std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::find(Tkey key,Tvalue val) {
   std::vector<Tvalue> Ans;
   file.open(file_name, std::ios::out | std::ios::in);
   Head H;
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
-  // std::cerr<<H.blocknum<<'\n';
   if (H.blocknum == 0) {
+    file.close();
     return Ans;
   }
-  // std::cerr<<H.blocknum<<'\n';
   int las = 0, beg = H.blocknum;
   for (int i = 0; i < H.blocknum; i++) {
     if (i && (key < H.indexkey[i]||key==H.indexkey[i]&&val<H.indexval[i])) {
@@ -285,14 +298,13 @@ Tvalue MyMemoryClass<Tkey, Tvalue>::find(Tkey key,Tvalue val) {
     las = i;
   }
   beg=las;
-  // std::cerr<<las-beg<<'\n';
   Block block;
   for (int i = beg; i <= las; i++) {
     file.seekg(H.index[i], std::ios::beg);
     file.read(reinterpret_cast<char *>(&block), sizeof(Block));
     for (int j = 0; j < block.itemnum; j++) {
-      if (key == block.key[j]&&val==H.indexval[i]) {
-        return block.val[j];
+      if (key == block.key[j]&&val==block.val[j]) {
+        Ans.push_back( block.val[j]);
       }
     }
   }
@@ -309,11 +321,11 @@ void MyMemoryClass<Tkey, Tvalue>::del(Tkey key, Tvalue val) {
   file.open(file_name, std::ios::out | std::ios::in);
   Head H;
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
-  // std::cerr<<H.blocknum<<'\n';
   if (H.blocknum == 0) {
+    file.close();
     return;
   }
-  // std::cerr<<H.blocknum<<'\n';
+
   int las = 0, beg = H.blocknum;
   for (int i = 0; i < H.blocknum; i++) {
     if (i && (key < H.indexkey[i] ||
@@ -369,6 +381,7 @@ void MyMemoryClass<Tkey, Tvalue>::del(Tkey key) {
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
   // std::cerr<<H.blocknum<<'\n';
   if (H.blocknum == 0) {
+    file.close();
     return;
   }
   // std::cerr<<H.blocknum<<'\n';
@@ -427,6 +440,7 @@ std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::findsegment(Tkey L,Tkey R)
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
   // std::cerr<<H.blocknum<<'\n';
   if (H.blocknum == 0) {
+    file.close();
     return Ans;
   }
   // std::cerr<<H.blocknum<<'\n';
@@ -469,6 +483,7 @@ int MyMemoryClass<Tkey, Tvalue>::chgaddtimes()
   int tmp=H.addtimes;
   file.seekp(0, std::ios::beg);
   file.write(reinterpret_cast<char *>(&H), sizeof(Head));
+  file.close();
   return tmp;
 }
 #endif

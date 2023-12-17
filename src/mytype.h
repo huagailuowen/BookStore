@@ -40,7 +40,14 @@ template <const int len> struct Mystring {
   Mystring();
   Mystring(string s);
   operator string()const;
-  friend std::ostream& operator<<(std::ostream&out,const Mystring&the);
+  
+  friend std::ostream& operator<<(std::ostream&out,const Mystring<len>&the)
+  {
+    for(int i=0;i<the.l;i++)
+      out<<the.c[i];
+    return out;
+  }
+
   //???
   string tostr();
   void gethash();
@@ -60,6 +67,12 @@ template <const int len> struct Mystring {
   friend class BookData;
   template<class Tkey,class Tvalue>
   friend class MyMemoryClass;
+  string MAXSTRING()
+    {
+  string s;
+  for(int i=0;i<len;i++)s+=char(127);
+  return s;
+    }
 };
 using MyISBN = Mystring<20>;
 using Userid = Mystring<20>;
@@ -102,7 +115,7 @@ template<const int len>
 Mystring<len>::Mystring(string s){
     for(int i=0;i<s.size();i++)
         c[i]=s[i];
-    l=s.size()+1;
+    l=s.size();
     c[s.size()]='\0';
     gethash();
 }
@@ -177,20 +190,7 @@ bool Mystring<len>::operator!=(const Mystring &b)const
 {
     return !((*this)==b);
 }
-template<const int len>
-std::ostream& operator<<(std::ostream&out,const Mystring<len>&the)
-  {
-    for(int i=0;i<the.l;i++)
-      out<<the.c[i];
-    return out;
-  }
 
 
-template <const int len>
-Mystring<len> MAXSTRING()
-{
-  Mystring<len>s;
-  for(int i=0;i<len;i++)s.c[i]=127;
-  return s;
-}
+
 #endif

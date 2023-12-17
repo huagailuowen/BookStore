@@ -10,7 +10,7 @@ bool IsISBN(const string &s,MyISBN&the)
 {
     if(s.size()>20)return false;
     for(auto c:s){
-        if(!(c>=0&&c<=32||c==127))
+        if((c>=0&&c<=32||c==127))
             return false;
     }
     the=std::move(MyISBN(s));
@@ -30,7 +30,7 @@ bool Isauthor(const string &s,Myauthor&the)
 {
     if(s.size()>60)return false;
     for(auto c:s){
-        if(!(c>=0&&c<=32||c==127||c=='\"'))
+        if((c>=0&&c<=32||c==127||c=='\"'))
             return false;
     }
     the=std::move(Myauthor(s));
@@ -40,7 +40,7 @@ bool Isbookname(const string &s,Bookname &the)
 {
     if(s.size()>60)return false;
     for(auto c:s){
-        if(!(c>=0&&c<=32||c==127||c=='\"'))
+        if((c>=0&&c<=32||c==127||c=='\"'))
             return false;
     }
     the=std::move(Bookname(s));
@@ -50,13 +50,13 @@ bool Isusername(const string &s,Username &the)
 {
     if(s.size()>30)return false;
     for(auto c:s){
-        if(!(c>=0&&c<=32||c==127))
+        if((c>=0&&c<=32||c==127))
             return false;
     }
     the=std::move(Username(s));
     return true;    
 }
-bool Ispassword(string s,Password&the)
+bool Ispassword(const string &s,Password&the)
 {
     if(s.size()>30)return false;
     for(auto c:s){
@@ -75,7 +75,7 @@ bool Iskeyword(const string &s,Keyword&the,bool one)
     char las='|';
     string tmp="";
     for(auto c:s){
-        if(!(c>=0&&c<=32||c==127||c=='\"'))
+        if((c>=0&&c<=32||c==127||c=='\"'))
             return false;
         if(c=='|'&&las=='|')
             return false;

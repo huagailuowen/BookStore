@@ -1,4 +1,7 @@
+#include <fstream>
+#include <ios>
 #include<iostream>
+#include <string>
 #include <utility>
 #include <vector>
 #include<set>
@@ -15,21 +18,25 @@ BookData Bookdata;
 vector<std::pair<Userid, int>>userstack;
 vector<MyISBN>theselected;
 std::set<Userid>st;
-void init(std::string name="sjtu")
+int TEST;
+void init(std::string name="sjtu",bool is_new=0)
 {
-    Accountdata=AccountData(name);
-    Logdata=LogData(name);
-    Bookdata=BookData(name);
+    Accountdata=AccountData(name+"Account",is_new);
+    Logdata=LogData(name+"Log",is_new);
+    
+    // exit(0);
+    Bookdata=BookData(name+"Bookdata",is_new);
     Accountdata.adduser(Account(Userid("root"),Username("root"),power_type::owner,Password("sjtu")));
     userstack.resize(1);
-    userstack[0]=std::make_pair(Userid(""), (int)power_type::none);
+    userstack[0]=std::make_pair(Userid("#"), (int)power_type::none);
 }
 int main()
 {
     // Mystring<20> a;
     // // Isuserid("390489349", a);
     // std::cout<<(string)a;
-    init();
+    init("sjtu");
+    // Logdata.addlog(-1,Log(userstack.back().first,userstack.back().second,""));
     while(Readcommand());
     return 0;
 }

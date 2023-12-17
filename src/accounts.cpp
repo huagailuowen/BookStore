@@ -3,6 +3,31 @@
 #include <any>
 #include <vector>
 // #include "mytype.h"
+bool Account::operator<(const Account &b)const
+{
+    return id<b.id;
+}
+bool Account::operator>(const Account &b)const
+{
+    return id>b.id;
+}
+bool Account::operator==(const Account &b)const
+{
+    return id==b.id;
+}
+bool Account::operator<=(const Account &b)const
+{
+    return id<=b.id;
+}
+bool Account::operator>=(const Account &b)const
+{
+    return id>=b.id;
+}
+bool Account::operator!=(const Account &b)const
+{
+    return id!=b.id;
+}
+
 Account::Account(Userid id_,Username name_,power_type power_,Password password_)
 :id(id_),name(name_),power(power_),password(password_){}
 bool Account::empty()
@@ -31,9 +56,9 @@ Username Account::nam()
 {
     return name;
 }
-AccountData::AccountData(const string &s)
+AccountData::AccountData(const string &s,bool is_new)
 {
-    this->Accountware.initialise(s+"_Accountware");
+    this->Accountware.initialise(s+"_Accountware",is_new);
 }
 Account AccountData::quiry(quiry_type typ,std::any the)
 {

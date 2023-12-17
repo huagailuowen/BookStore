@@ -21,13 +21,19 @@ class Account{
     Password pass();
     Userid user();
     Username nam();
-    
+    bool operator<(const Account &b)const;
+    bool operator>(const Account &b)const;
+    bool operator==(const Account &b)const;
+    bool operator<=(const Account &b)const;
+    bool operator>=(const Account &b)const;
+    bool operator!=(const Account &b)const;
 };
 class AccountData{
+    friend void init(std::string);
     MyMemoryClass<Userid,Account> Accountware;
     public:
     AccountData()=default;
-    AccountData(const string &);
+    AccountData(const string &,bool is_new);
     Account quiry(quiry_type,std::any);
     //找不到返回userid="#
     void del(Userid);
