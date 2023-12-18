@@ -106,7 +106,7 @@ void LogData::reportfinance(std::ostringstream &oss)
     int cnt=0;
     for(auto u:list){
         oss<<"line:"<<cnt<<'\t'<<" | "<<"base.first:"<<u.first<<'\t'<<" | ";
-        oss<<std::setprecision(2)<<(u.second.first>0?u.second.first:-u.second.second)<<'\n';
+        oss<<std::fixed<<std::setprecision(2)<<(u.second.first>0?u.second.first:-u.second.second)<<'\n';
     }
 }
 void LogData::reportemployee(std::ostringstream &oss)

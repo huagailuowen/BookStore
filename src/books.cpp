@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+extern int TEST;
 bool Book::operator<(const Book &b)const
 {
     return realISBN<b.realISBN;
@@ -36,7 +37,7 @@ std::ostream& operator<<(std::ostream&out,const Book&the)
 {
     out<<the.ISBN<<'\t'<<the.name<<'\t';
     out<<the.author<<'\t'<<the.keyword<<'\t';
-    out<<std::setprecision(2)<<the.price<<'\t'<<the.num;
+    out<<std::fixed<<std::setprecision(2)<<the.price<<'\t'<<the.num;
     return out;
 }
 Book::Book(Bookname name_,MyISBN ISBN_,int realISBN_,Myauthor author_,
@@ -100,6 +101,7 @@ std::vector<Book>BookData::quirybook(quiry_type typ,string s)
     }
     vector<Book>Res;
     for(auto r:res){
+        // assert(this->bookware.find(r).size()==1);
         Res.push_back(this->bookware.find(r).front());
     }
     //GG可以加速，上面很慢
@@ -128,11 +130,10 @@ void BookData::addbook(Book the)
 void BookData::modifybook(Book old,Book the)
 {
     int t=ISBN_ISBN.find(old.ISBN).front();
-    bookware.del(t, the);
+    bookware.del(t, old);
     ISBN_ISBN.del(old.ISBN, t);
     name_ISBN.del(old.name, t);
     author_ISBN.del(old.author, t);
-
     vector<string>list;
     Getkeywordlist(old.keyword, list);
     for(auto s:list){
@@ -151,4 +152,5 @@ void BookData::modifybook(Book old,Book the)
     for(auto s:list){
         keyword_ISBN.insert(s, t);
     }
+
 }

@@ -66,9 +66,7 @@ bool readcommand(const string &command,std::ostringstream& oss,int &typ)
         //ostream
         return true;
     }
-    // for(auto i:list)std::cerr<<i<<' ';
 
-    std::cerr<<'\n';
     // exit(0);
     string opt=list[0];
     if(opt=="quit"){
@@ -93,6 +91,9 @@ bool readcommand(const string &command,std::ostringstream& oss,int &typ)
     }else if(opt=="useradd"){
         typ=(int)command_type::useradd;
         return useradd(std::move(list), oss);
+    }else if(opt=="passwd"){
+        typ=(int)command_type::passwd;
+        return passwd(std::move(list), oss);
     }else if(opt=="delete"){
         typ=(int)command_type::del;
         return del(std::move(list), oss);
@@ -171,7 +172,7 @@ bool regi(vector<string>list,std::ostringstream &oss)
 }
 bool passwd(vector<string>list,std::ostringstream &oss)
 {
-    Userid Id;Password Pd(""),newPd;
+    Userid Id;Password Pd("\""),newPd;
     if(list.size()<3||list.size()>4)return false;
     if(!Isuserid(list[1], Id))return false;
     if(!Ispassword(list.back(), newPd))return false;
@@ -180,13 +181,14 @@ bool passwd(vector<string>list,std::ostringstream &oss)
     }
     Account tmp=Accountdata.quiry(quiry_type::userid, Id);
     if(tmp.empty())return false;
-    if((int)tmp.privilege()!=7&&tmp.pass()!=Pd)return false;
+    if(userstack.back().second!=7&&tmp.pass()!=Pd)return false;
     tmp=Account(tmp.user(),tmp.nam(),tmp.privilege(),newPd);
     Accountdata.update(Id, newPd);
     return true;
 }
 bool useradd(vector<string>list,std::ostringstream &oss)
 {
+
     if(list.size()!=5)return false;
     if(userstack.back().second<3)return false;
     Userid Id;Password Pd;Username Nam;power_type pri;
@@ -194,9 +196,10 @@ bool useradd(vector<string>list,std::ostringstream &oss)
     if(!Ispassword(list[2], Pd))return false;
     if(!Isprivilege(list[3], pri))return false;
     if(!Isusername(list[4], Nam))return false;
-
     
     if(userstack.back().second<=(int)pri)return false;
+
+
     Account tmp=Accountdata.quiry(quiry_type::userid, Id);
     if(!tmp.empty())return false;
 
@@ -235,7 +238,7 @@ bool show(vector<string>list,std::ostringstream &oss)
         return true;
     }else{
         if(list[1].size()>=6&&list[1].substr(0,6)=="-ISBN="){
-            list[1]=list[1].substr(6,list[1].size());
+            list[1]=list[1].substr(6,list[1].size()-6);
             if(list[1].size()==0)return false;
             
             vector<Book>res=Bookdata.quirybook(quiry_type::ISBN, list[1]);
@@ -245,7 +248,7 @@ bool show(vector<string>list,std::ostringstream &oss)
             return true;
         }else if(list[1].size()>=8&&list[1].substr(0,6)=="-name="){
             if(list[1][6]!='\"'||list[1].back()!='\"')return false;
-            list[1]=list[1].substr(7,list[1].size()-1);
+            list[1]=list[1].substr(7,list[1].size()-1-7);
             if(list[1].size()==0)return false;
             Bookname chk;
             if(!Isbookname(list[1], chk))return false;
@@ -261,7 +264,7 @@ bool show(vector<string>list,std::ostringstream &oss)
             return true;
         }else if(list[1].size()>=10&&list[1].substr(0,8)=="-author="){
             if(list[1][8]!='\"'||list[1].back()!='\"')return false;
-            list[1]=list[1].substr(9,list[1].size()-1);
+            list[1]=list[1].substr(9,list[1].size()-1-9);
             if(list[1].size()==0)return false;
             Myauthor chk;
             if(!Isauthor(list[1], chk))return false;
@@ -272,7 +275,7 @@ bool show(vector<string>list,std::ostringstream &oss)
             return true;
         } else if(list[1].size()>=11&&list[1].substr(0,9)=="-keyword="){
             if(list[1][9]!='\"'||list[1].back()!='\"')return false;
-            list[1]=list[1].substr(10,list[1].size()-1);
+            list[1]=list[1].substr(10,list[1].size()-1-10);
             if(list[1].size()==0)return false;
             Keyword chk;
             if(!Iskeyword(list[1], chk,true))return false;
@@ -296,13 +299,13 @@ bool buy(vector<string>list,std::ostringstream &oss)
     if(quantity==0)return false;
     vector<Book>res=Bookdata.quirybook(quiry_type::ISBN,list[1]);
     if(res.empty())return false;
-    // std::cerr<<"]]]";
+
     if(res.front().num<quantity)return false;
     Book newbook=res.front();
     newbook.num-=quantity;
     Bookdata.modifybook(res.front(), newbook);
     oss.setf(std::ios::fixed);                    
-    oss<<std::setprecision(2)<<newbook.price*quantity<<'\n';
+    oss<<std::fixed<<std::setprecision(2)<<newbook.price*quantity<<'\n';
     oss.unsetf(std::ios::fixed);  
     return true;
 }
@@ -339,31 +342,36 @@ bool modify(vector<string>list,std::ostringstream &oss)
         if(list[i].size()>=6&&list[i].substr(0,6)=="-ISBN="){
             if(flag[(int)quiry_type::ISBN])return false;
             flag[(int)quiry_type::ISBN]=true;
-            list[i]=list[i].substr(6,list.size());
+            list[i]=list[i].substr(6,list[i].size()-6);
 
             if(list[i].size()==0)return false;
             MyISBN chk;
             if(!IsISBN(list[i], chk))return false;
             if(old.ISBN==chk)return false;
             the.ISBN=MyISBN(list[i]);
+            if(!Bookdata.quirybook(quiry_type::ISBN, list[i]).empty()){
+                return false;
+            }
             continue;
 
         }else if(list[i].size()>=8&&list[i].substr(0,6)=="-name="){
+
             if(flag[(int)quiry_type::name])return false;
             flag[(int)quiry_type::name]=true;
             if(list[i][6]!='\"'||list[i].back()!='\"')return false;
-            list[i]=list[i].substr(7,list.size()-1);
+            list[i]=list[i].substr(7,list[i].size()-1-7);
             if(list[i].size()==0)return false;
             Bookname chk;
             if(!Isbookname(list[i], chk))return false;
             the.name=Bookname(list[i]);
+            
             continue;
 
         }else if(list[i].size()>=10&&list[i].substr(0,8)=="-author="){
             if(flag[(int)quiry_type::author])return false;
             flag[(int)quiry_type::author]=true;
             if(list[i][8]!='\"'||list[i].back()!='\"')return false;
-            list[i]=list[i].substr(9,list.size()-1);
+            list[i]=list[i].substr(9,list[i].size()-1-9);
             if(list[i].size()==0)return false;
             Myauthor chk;
             if(!Isauthor(list[i], chk))return false;
@@ -374,7 +382,7 @@ bool modify(vector<string>list,std::ostringstream &oss)
             if(flag[(int)quiry_type::keyword])return false;
             flag[(int)quiry_type::keyword]=true;
             if(list[i][9]!='\"'||list[i].back()!='\"')return false;
-            list[i]=list[i].substr(10,list.size()-1);
+            list[i]=list[i].substr(10,list[i].size()-1-10);
             if(list[i].size()==0)return false;
             Keyword chk;
             if(!Iskeyword(list[i], chk))return false;
@@ -384,7 +392,7 @@ bool modify(vector<string>list,std::ostringstream &oss)
         } else if(list[i].size()>=7&&list[i].substr(0,7)=="-price="){
             if(flag[(int)quiry_type::price])return false;
             flag[(int)quiry_type::price]=true;
-            list[i]=list[i].substr(7,list.size());
+            list[i]=list[i].substr(7,list[i].size()-7);
             if(list[i].size()==0)return false;
             double chk;
             if(!Isprice(list[i], chk))return false;
@@ -414,7 +422,7 @@ bool import(vector<string>list,std::ostringstream &oss)
     newbook.num+=quantity;
     Bookdata.modifybook(res.front(), newbook);
     oss.setf(std::ios::fixed);                    
-    oss<<std::setprecision(2)<<totalcost<<'\n';
+    oss<<std::fixed<<std::setprecision(2)<<totalcost<<'\n';
     oss.unsetf(std::ios::fixed);  
     return true;
 }
@@ -432,7 +440,7 @@ bool showfinance(vector<string>list,std::ostringstream &oss)
     if(count==0)oss<<'\n';
     else{
         oss.setf(std::ios::fixed);                    
-        oss<<"+ "<<std::setprecision(2)<<res.first<<" - "<<std::setprecision(2)<<res.second<<'\n';
+        oss<<"+ "<<std::fixed<<std::setprecision(2)<<res.first<<" - "<<std::fixed<<std::setprecision(2)<<res.second<<'\n';
         oss.unsetf(std::ios::fixed);   
     }
     return true;

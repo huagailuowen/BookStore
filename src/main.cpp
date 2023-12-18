@@ -18,7 +18,7 @@ BookData Bookdata;
 vector<std::pair<Userid, int>>userstack;
 vector<MyISBN>theselected;
 std::set<Userid>st;
-int TEST;
+int TEST=0;
 void init(std::string name="sjtu",bool is_new=0)
 {
     Accountdata=AccountData(name+"Account",is_new);
