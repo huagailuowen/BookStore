@@ -448,8 +448,8 @@ bool import(vector<string>list,std::ostringstream &oss)
     if(list.size()!=3)return false;
     if(!Isquantity(list[1],quantity))return false;
     if(!Isprice(list[2],totalcost))return false;
-    if(quantity<0)return false;
-    if(totalcost<0)return false;
+    if(quantity<=0)return false;
+    if(totalcost<=0)return false;
     
     vector<Book>res=Bookdata.quirybook(quiry_type::realISBN,std::to_string(theselected.back()));
     Book newbook=res.front();
