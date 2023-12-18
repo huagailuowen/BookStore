@@ -7,7 +7,7 @@
 class Log{
     Userid id;
     int power;
-    Mystring<200> command;
+    Mystring<300> command;
     public:
     Log ()=default;
     Log(Userid i,int p,string s)
