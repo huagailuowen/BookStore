@@ -157,7 +157,7 @@ bool logout(vector<string>list,std::ostringstream &oss)
 {
     if(userstack.size()==1)return false;
     auto tmp=st.find(userstack.back().first);
-    if((*tmp).second==0){
+    if((*tmp).second==1){
         st.erase(tmp);
     }else{
         (*tmp).second--;
@@ -229,7 +229,7 @@ bool del(vector<string>list,std::ostringstream &oss)
 
     Account tmp=Accountdata.quiry(quiry_type::userid, Id);
     if(tmp.empty())return false;
-    if(st.find(Id)!=st.end()||st[Id]==0)return false;
+    if(st.find(Id)!=st.end()&&st[Id]!=0)return false;
     Accountdata.del(Id);
     if(tmp.privilege()==power_type::crew){
         Logdata.delcrew(Id);
