@@ -12,6 +12,11 @@ bool Book::operator<(const Book &b)const
 {
     return realISBN<b.realISBN;
 }
+bool Book::cp(const Book &b)const
+{
+    return ISBN<b.ISBN;
+}
+
 bool Book::operator>(const Book &b)const
 {
     return realISBN>b.realISBN;
@@ -99,13 +104,18 @@ std::vector<Book>BookData::quirybook(quiry_type typ,string s)
         res=this->keyword_ISBN.find(s);
         res.erase(std::unique(res.begin(), res.end()), res.end());
     }
-    vector<Book>Res;
+    vector<Book>Res,Re;vector<int>index;
     for(auto r:res){
         // assert(this->bookware.find(r).size()==1);
         Res.push_back(this->bookware.find(r).front());
+        index.push_back(index.size());
     }
+    sort(index.begin(),index.end(),[Res](int a,int b)->bool{return Res[a].ISBN<Res[b].ISBN;});
     //GG可以加速，上面很慢
-    return Res;
+    for(auto r:index){
+        Re.push_back(Res[r]);
+    }
+    return Re;
 }
 // std::any BookData::quirybookdetails(quiry_type,MyISBN)
 // {

@@ -35,7 +35,7 @@ class Book{
     bool operator<=(const Book &b)const;
     bool operator>=(const Book &b)const;
     bool operator!=(const Book &b)const;
-    
+    bool cp(const Book &b)const;
 
 };
 std::ostream& operator<<(std::ostream&,const Book&);
