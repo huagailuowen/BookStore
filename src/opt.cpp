@@ -145,6 +145,7 @@ bool su(vector<string>list,std::ostringstream &oss)
     Account theaccount=Accountdata.quiry(quiry_type::userid,Id);
     if(theaccount.empty())return false;
     if(!theaccount.getinto(Pd,userstack.back().second)){
+        // std::cerr<<"!!!!!";
         return false;
     }
 

@@ -36,7 +36,8 @@ bool Account::empty()
 }
 bool Account::getinto(const Password&thepassword,const int&thepower)
 {
-    if(password==Password("\"")){
+        // std::cerr<<"::::"<<thepassword;
+    if(thepassword==Password("\"")){
         if((int)power<(int)thepower)return true;
         else return false;
     }
