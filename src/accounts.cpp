@@ -32,11 +32,14 @@ Account::Account(Userid id_,Username name_,power_type power_,Password password_)
 :id(id_),name(name_),power(power_),password(password_){}
 bool Account::empty()
 {
-    return (id==Mystring<20>("#"));
+    return (id==Mystring<30>("#"));
 }
 bool Account::getinto(const Password&thepassword,const int&thepower)
 {
-    if((int)power<(int)thepower)return true;
+    if(password==Password("\"")){
+        if((int)power<(int)thepower)return true;
+        else return false;
+    }
     if(password!=thepassword)return false;
     return true;
 }

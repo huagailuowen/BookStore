@@ -182,16 +182,36 @@ bool regi(vector<string>list,std::ostringstream &oss)
 }
 bool passwd(vector<string>list,std::ostringstream &oss)
 {
-    Userid Id;Password Pd("\""),newPd;
+    // if(list[1]=="RaA4Us0T5tKdkhjl2NeQyr4qlVgLa")oss<<"|1|";
+
     if(list.size()<3||list.size()>4)return false;
+    // if(list[1]=="RaA4Us0T5tKdkhjl2NeQyr4qlVgLa")oss<<"|1|";
+    if(userstack.back().second<1)return false;
+    // if(list[1]=="RaA4Us0T5tKdkhjl2NeQyr4qlVgLa")oss<<"|2|";
+
+    Userid Id;Password Pd("\""),newPd;
     if(!Isuserid(list[1], Id))return false;
     if(!Ispassword(list.back(), newPd))return false;
+    // if(list[1]=="RaA4Us0T5tKdkhjl2NeQyr4qlVgLa")std::cerr<<"|4|";
+
     if(list.size()==4){
         if(!Ispassword(list[2], Pd))return false;
     }
+    // if(list[1]=="RaA4Us0T5tKdkhjl2NeQyr4qlVgLa")std::cerr<<"|4|";
+    // if(list[1]=="RaA4Us0T5tKdkhjl2NeQyr4qlVgLa"){
+    //     std::cerr<<Accountdata.Accountware.find()
+    // }
+
     Account tmp=Accountdata.quiry(quiry_type::userid, Id);
     if(tmp.empty())return false;
-    if(userstack.back().second!=7&&tmp.pass()!=Pd)return false;
+    // if(list[1]=="RaA4Us0T5tKdkhjl2NeQyr4qlVgLa")std::cerr<<"|5|";
+
+    if(Pd==Password("\"")){
+      if(userstack.back().second!=7)return false;  
+    }
+    // if(list[1]=="RaA4Us0T5tKdkhjl2NeQyr4qlVgLa")std::cerr<<"|6|";
+
+    else if(tmp.pass()!=Pd)return false;
     tmp=Account(tmp.user(),tmp.nam(),tmp.privilege(),newPd);
     Accountdata.update(Id, newPd);
     return true;

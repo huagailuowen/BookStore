@@ -75,7 +75,7 @@ template <const int len> struct Mystring {
     }
 };
 using MyISBN = Mystring<20>;
-using Userid = Mystring<20>;
+using Userid = Mystring<30>;
 using Myauthor = Mystring<60>;
 using Bookname = Mystring<60>;
 using Username = Mystring<30>;

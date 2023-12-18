@@ -29,6 +29,7 @@ class Account{
     bool operator!=(const Account &b)const;
 };
 class AccountData{
+    public:
     friend void init(std::string);
     MyMemoryClass<Userid,Account> Accountware;
     public:
