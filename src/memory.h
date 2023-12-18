@@ -435,6 +435,7 @@ std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::findsegment(Tkey L,Tkey R)
 {
   // std::cerr<<key.tostr()<<'\n';
   std::vector<Tvalue> Ans;
+  if(L>R)return Ans;
   file.open(file_name, std::ios::out | std::ios::in);
   Head H;
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
