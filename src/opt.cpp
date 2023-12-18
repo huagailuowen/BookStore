@@ -49,7 +49,7 @@ bool Readcommand()
     return true;
 }
 
-bool readcommand(const string &command,std::ostringstream& oss,int &typ)
+bool readcommand(string &command,std::ostringstream& oss,int &typ)
 {
     string tmp;
     vector<string>list;
@@ -64,6 +64,9 @@ bool readcommand(const string &command,std::ostringstream& oss,int &typ)
     }
     if(tmp!="")list.push_back(tmp);
     tmp="";
+    command="";
+    if(!list.empty())command+=list[0];
+    for(int i=1;i<list.size();i++)command+=" ",command+=list[i];
     if(list.empty()){
         //ostream
         return true;

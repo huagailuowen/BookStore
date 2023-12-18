@@ -19,7 +19,7 @@ bool showfinance(vector<string>list,std::ostringstream &oss);
 bool log(vector<string>list,std::ostringstream &oss);
 bool reportfinance(vector<string>list,std::ostringstream &oss);
 bool reportemployee(vector<string>list,std::ostringstream &oss);
-bool readcommand(const string &command,std::ostringstream& oss,int &typ);
+bool readcommand(string &command,std::ostringstream& oss,int &typ);
 bool Readcommand();
 
 
