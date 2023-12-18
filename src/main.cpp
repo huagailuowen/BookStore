@@ -5,6 +5,8 @@
 #include <utility>
 #include <vector>
 #include<set>
+#include<map>
+
 #include "memory.h"
 #include "mytype.h"
 #include "opt.h"
@@ -17,7 +19,7 @@ LogData Logdata;
 BookData Bookdata;
 vector<std::pair<Userid, int>>userstack;
 vector<MyISBN>theselected;
-std::set<Userid>st;
+std::map<Userid,int>st;
 int TEST=0;
 void init(std::string name="sjtu",bool is_new=0)
 {

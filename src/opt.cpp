@@ -8,6 +8,8 @@
 #include <sstream>
 #include<string>
 #include<set>
+#include<map>
+
 #include <utility>
 using std::string;
 extern AccountData Accountdata; 
@@ -15,7 +17,7 @@ extern LogData Logdata;
 extern BookData Bookdata;
 extern vector<std::pair<Userid, int>>userstack;
 extern vector<int>theselected;
-extern std::set<Userid>st;
+extern std::map<Userid,int>st;
 bool Readcommand()
 {
     string command;     
@@ -145,13 +147,21 @@ bool su(vector<string>list,std::ostringstream &oss)
     if(!theaccount.getinto(Pd,userstack.back().second)){
         return false;
     }
+
     userstack.push_back(std::make_pair(theaccount.user() , (int)theaccount.privilege()));
+    st[Id]++;
     theselected.push_back(-1);
     return true;
 }
 bool logout(vector<string>list,std::ostringstream &oss)
 {
     if(userstack.size()==1)return false;
+    auto tmp=st.find(userstack.back().first);
+    if((*tmp).second==0){
+        st.erase(tmp);
+    }else{
+        (*tmp).second--;
+    }
     userstack.pop_back();
     theselected.pop_back();
     return true;
@@ -219,7 +229,7 @@ bool del(vector<string>list,std::ostringstream &oss)
 
     Account tmp=Accountdata.quiry(quiry_type::userid, Id);
     if(tmp.empty())return false;
-    if(st.find(Id)!=st.end())return false;
+    if(st.find(Id)!=st.end()||st[Id]==0)return false;
     Accountdata.del(Id);
     if(tmp.privilege()==power_type::crew){
         Logdata.delcrew(Id);
