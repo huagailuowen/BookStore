@@ -46,7 +46,7 @@ std::ostream& operator<<(std::ostream&out,const Book&the)
     return out;
 }
 Book::Book(Bookname name_,MyISBN ISBN_,int realISBN_,Myauthor author_,
-    Keyword keyword_,double price_,int num_)
+    Keyword keyword_,double price_,long long num_)
 :name(name_),ISBN(ISBN_),realISBN(realISBN_),author(author_),keyword(keyword_),price(price_),num(num_){}
 
 

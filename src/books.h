@@ -18,7 +18,7 @@ class Book{
     Myauthor author;
     Keyword keyword;
     double price;
-    int num;
+    long long num;
     friend std::ostream& operator<<(std::ostream&,const Book&);
     friend bool buy(vector<string>list,std::ostringstream &oss);
     friend bool select(vector<string>list,std::ostringstream &oss);
@@ -27,7 +27,7 @@ class Book{
     public:
     Book(){num=price=0;}
     Book(Bookname name_,MyISBN ISBN_,int realISBN_,Myauthor author_,
-    Keyword keyword_,double price_,int num_);
+    Keyword keyword_,double price_,long long num_);
     friend class BookData;
     bool operator<(const Book &b)const;
     bool operator>(const Book &b)const;

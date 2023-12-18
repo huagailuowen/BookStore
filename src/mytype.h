@@ -91,7 +91,7 @@ bool Ispassword(const string &s,Password&);
 
 bool Iskeyword(const string &s,Keyword&,bool one=false);
 bool Isprivilege(const string &s,power_type &a);
-bool Isquantity(const string &s, int &);
+bool Isquantity(const string &s, long long &);
 bool Isprice(const string &s, double &);
 
 

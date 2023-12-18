@@ -327,7 +327,7 @@ bool buy(vector<string>list,std::ostringstream &oss)
     if(userstack.back().second<1)return false;
     if(list.size()!=3)return false;
     MyISBN ISBN;
-    int quantity;
+    long long quantity;
     if(!IsISBN(list[1],ISBN))return false;
     if(!Isquantity(list[2],quantity))return false;
     if(quantity==0)return false;
@@ -444,7 +444,7 @@ bool import(vector<string>list,std::ostringstream &oss)
 {
     if(userstack.back().second<3)return false;
     if(theselected.back()==-1)return false;
-    int quantity;double totalcost=0;
+    long long quantity;double totalcost=0;
     if(list.size()!=3)return false;
     if(!Isquantity(list[1],quantity))return false;
     if(!Isprice(list[2],totalcost))return false;
@@ -465,7 +465,7 @@ bool showfinance(vector<string>list,std::ostringstream &oss)
 {
     if(userstack.back().second<7)return false;
     if(list.size()>3)return false;
-    int count=Logdata.Billnum();
+    long long count=Logdata.Billnum();
     if(list.size()==3){
         if(!Isquantity(list[2], count))return false;
     }

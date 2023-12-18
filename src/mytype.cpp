@@ -121,7 +121,7 @@ bool Isprivilege(const string &s,power_type &a)
     }
     return false;
 }
-bool Isquantity(const string &s, int &the)
+bool Isquantity(const string &s, long long &the)
 {
     if(s.size()>10||s.empty())return false;
     long long res=0;
