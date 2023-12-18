@@ -92,6 +92,7 @@ void LogData::chgbill(double val)
         //小心  base.first更新？？？
         sumw.insert(base.second.first, std::make_pair(base.first,std::make_pair(val,0)));
     }else{
+        //0只可能是 buy
         base.second.first++;
         //小心  base.first更新？？？
         sumw.insert(base.second.first, std::make_pair(base.first,std::make_pair(0,-val)));
@@ -105,7 +106,7 @@ void LogData::reportfinance(std::ostringstream &oss)
     std::vector<std::pair<int,std::pair<double,double>>> list=sumw.findsegment(0, 1000000000);
     int cnt=0;
     for(auto u:list){
-        oss<<"line:"<<cnt<<'\t'<<" | "<<"base.first:"<<u.first<<'\t'<<" | ";
+        oss<<"line:"<<++cnt<<'\t'<<" | "<<"command:"<<u.first<<'\t'<<" | ";
         oss<<std::fixed<<std::setprecision(2)<<(u.second.first>0?u.second.first:-u.second.second)<<'\n';
     }
 }

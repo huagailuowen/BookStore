@@ -274,7 +274,8 @@ bool show(vector<string>list,std::ostringstream &oss)
         if(list[1].size()>=6&&list[1].substr(0,6)=="-ISBN="){
             list[1]=list[1].substr(6,list[1].size()-6);
             if(list[1].size()==0)return false;
-            
+            MyISBN ISBN;
+            if(!IsISBN(list[1], ISBN))return false;
             vector<Book>res=Bookdata.quirybook(quiry_type::ISBN, list[1]);
             for(auto v:res){
                 oss<<v<<'\n';
@@ -484,6 +485,8 @@ bool log(vector<string>list,std::ostringstream &oss)
     if(userstack.back().second<7)return false;
     if(list.size()>1)return false;   
     Logdata.reportlog(oss);
+    Logdata.reportfinance(oss);
+    
     return true;
 }
 bool reportfinance(vector<string>list,std::ostringstream &oss)
