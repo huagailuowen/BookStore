@@ -447,17 +447,18 @@ std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::findsegment(Tkey L,Tkey R)
   // std::cerr<<H.blocknum<<'\n';
   int las = 0, beg = H.blocknum;
   for (int i = 0; i < H.blocknum; i++) {
-    if (i && (L < H.indexkey[i])) {
+    if (i && (R < H.indexkey[i])) {
       break;
     }
     las = i;
   }
   for (int i = H.blocknum - 1; i >= 0; i--) {
-    if ((i == 0) || R > H.indexkey[i]) {
+    if ((i == 0) || L > H.indexkey[i]) {
       beg = i;
       break;
     }
   }
+  // if(beg >las)std::cerr<<beg<<' '<<las<<"!!!!!!||||||||||";
   assert(beg <= las);
   // std::cerr<<las-beg<<'\n';
   Block block;
