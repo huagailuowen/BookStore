@@ -1,0 +1,29 @@
+<html>
+   <body>
+      <form action = "http://127.0.0.1:8081/menu" method = "get">
+         <p>Command:</p>
+         <p><input type = "text" name = "command" /></p>
+         <p><input type = "submit" value = "submit" /></p>
+         <!-- <table border =1>
+            <tr> <th>id</th><th>name</th> </tr> 
+            <tr> <td>001</td><td>zcy</td> </tr> 
+            <tr> <td>002</td><td>fxz</td> </tr> 
+            </table> -->
+         <h1>Result: </h1>
+         <table border = 1>
+         {% for line in res %}
+         <tr>
+            <th> line: </th>
+            {% for s in line %}
+            <td> {{ s }} </td>
+            {%endfor%}
+            <!-- <td>  3ew</td> -->
+            <!-- <h1>{{ line }}</br></h1> -->
+        </tr>
+         {%endfor%}
+        </table>
+         <!-- <p><input type = "text" name = "res" /></p> -->
+         
+      </form>
+   </body>
+</html>
