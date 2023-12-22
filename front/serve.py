@@ -2,23 +2,11 @@ from flask import Flask
 from flask import render_template
 from flask import Flask, redirect, url_for, request
 import subprocess
-def str_2_bin(str):
-    """
-    字符串转换为二进制
-    """
-    return ' '.join([bin(ord(c)).replace('0b', '') for c in str])
-
-
-def bin_2_str(bin):
-    """
-    二进制转换为字符串
-    """
-    return ''.join([chr(i) for i in [int(b, 2) for b in bin.split(' ')]])
 # from subprocess import Popen, PIPE
 app = Flask(__name__)
 @app.route('/')
 def no ():
-    return redirect('/menu?command=start',code=302,Response="aaaaa")
+    return redirect('/menu?command=',code=302,Response="aaaaa")
 @app.route('/menu',methods = ['GET'])
 def menu():
 #    if request.method == 'POST':
