@@ -4,71 +4,70 @@
 #include <cassert>
 #include <cstddef>
 #include <ctime>
+#include <fstream>
 #include <ios>
 #include <vector>
-#include <fstream>
 extern int TEST;
-using std::string;
 using std::fstream;
 using std::ifstream;
 using std::ofstream;
-const int MAXblocknum=500;
-const int blocklength=300;
-template<class Tkey,class Tvalue>
-class MyMemoryClass {
+using std::string;
+const int MAXblocknum = 500;
+const int blocklength = 300;
+template <class Tkey, class Tvalue> class MyMemoryClass {
   friend class AccountData;
+
 private:
 public:
-    fstream file;
-    string file_name;
+  fstream file;
+  string file_name;
+
 public:
-    MyMemoryClass& operator=(const MyMemoryClass &b)
-    {
-      file_name=b.file_name;
-      return *this;
-    }
-    class Head{
-        public:
-        int blocknum=0;
-        int addtimes=0;
-        int index[MAXblocknum];
-        Tkey indexkey[MAXblocknum];
-        Tvalue indexval[MAXblocknum];
-    };
-    class Block{
-        //别用这个，sizeof 写不了
-        //std::vector<int>index;
-        public:
-        size_t itemnum=0;
-        Tkey indexkey;
-        Tvalue indexval;
-        bool F=0;
-        Tkey key[blocklength];
-        Tvalue val[blocklength];
-        Tkey minikey();
-        Tvalue minival();
-        std::size_t size();
-        void add(Tkey _key,Tvalue _val);
-        void upd();
-    };
-    
-    MyMemoryClass() = default;
+  MyMemoryClass &operator=(const MyMemoryClass &b) {
+    file_name = b.file_name;
+    return *this;
+  }
+  class Head {
+  public:
+    int blocknum = 0;
+    int addtimes = 0;
+    int index[MAXblocknum];
+    Tkey indexkey[MAXblocknum];
+    Tvalue indexval[MAXblocknum];
+  };
+  class Block {
+    // 别用这个，sizeof 写不了
+    // std::vector<int>index;
+  public:
+    size_t itemnum = 0;
+    Tkey indexkey;
+    Tvalue indexval;
+    bool F = 0;
+    Tkey key[blocklength];
+    Tvalue val[blocklength];
+    Tkey minikey();
+    Tvalue minival();
+    std::size_t size();
+    void add(Tkey _key, Tvalue _val);
+    void upd();
+  };
 
-    MyMemoryClass(const string& file_name) : file_name(file_name) {}
-    int getaddtimes();
-    void initialise(string FN = "",bool is_new=0);
-    void insert(Tkey key,Tvalue val);
+  MyMemoryClass() = default;
 
-    std::vector<Tvalue> find(Tkey key);
-    std::vector<Tvalue> find(Tkey key,Tvalue val);
-    
-    std::vector<Tvalue> findsegment(Tkey L,Tkey R);
-    
-    void del(Tkey key);
-    void del(Tkey key,Tvalue val);
-    
-    int chgaddtimes();
-    
+  MyMemoryClass(const string &file_name) : file_name(file_name) {}
+  int getaddtimes();
+  void initialise(string FN = "", bool is_new = 0);
+  void insert(Tkey key, Tvalue val);
+
+  std::vector<Tvalue> find(Tkey key);
+  std::vector<Tvalue> find(Tkey key, Tvalue val);
+
+  std::vector<Tvalue> findsegment(Tkey L, Tkey R);
+
+  void del(Tkey key);
+  void del(Tkey key, Tvalue val);
+
+  int chgaddtimes();
 };
 
 // #include "memory.h"
@@ -76,9 +75,8 @@ public:
 #include <cstddef>
 #include <ctime>
 #include <ios>
-#include <vector>
 #include <iostream>
-
+#include <vector>
 
 #include <fstream>
 
@@ -126,8 +124,7 @@ void MyMemoryClass<Tkey, Tvalue>::Block::upd() {
   return;
 }
 template <class Tkey, class Tvalue>
-int MyMemoryClass<Tkey, Tvalue>::getaddtimes()
-{
+int MyMemoryClass<Tkey, Tvalue>::getaddtimes() {
   file.open(file_name, std::ios::out | std::ios::in);
   Head H;
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
@@ -141,7 +138,8 @@ void MyMemoryClass<Tkey, Tvalue>::initialise(string FN, bool is_new) {
     file_name = FN;
   // if(!is_new)return;
   // if()
-  if(is_new)file.open(file_name, std::ios::out),file.close();
+  if (is_new)
+    file.open(file_name, std::ios::out), file.close();
   file.open(file_name, std::ios::app);
   if (file.tellp() != 0) {
     file.close();
@@ -157,10 +155,9 @@ template <class Tkey, class Tvalue>
 void MyMemoryClass<Tkey, Tvalue>::insert(Tkey key, Tvalue val) {
   file.open(file_name, std::ios::out | std::ios::in);
   Head H;
-  
+
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
-  
-  
+
   if (H.blocknum == 0) {
     // file.seekp(sizeof(Head));
     Block block;
@@ -281,7 +278,7 @@ std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::find(Tkey key) {
 }
 
 template <class Tkey, class Tvalue>
-std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::find(Tkey key,Tvalue val) {
+std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::find(Tkey key, Tvalue val) {
   std::vector<Tvalue> Ans;
   file.open(file_name, std::ios::out | std::ios::in);
   Head H;
@@ -292,19 +289,20 @@ std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::find(Tkey key,Tvalue val) {
   }
   int las = 0, beg = H.blocknum;
   for (int i = 0; i < H.blocknum; i++) {
-    if (i && (key < H.indexkey[i]||key==H.indexkey[i]&&val<H.indexval[i])) {
+    if (i &&
+        (key < H.indexkey[i] || key == H.indexkey[i] && val < H.indexval[i])) {
       break;
     }
     las = i;
   }
-  beg=las;
+  beg = las;
   Block block;
   for (int i = beg; i <= las; i++) {
     file.seekg(H.index[i], std::ios::beg);
     file.read(reinterpret_cast<char *>(&block), sizeof(Block));
     for (int j = 0; j < block.itemnum; j++) {
-      if (key == block.key[j]&&val==block.val[j]) {
-        Ans.push_back( block.val[j]);
+      if (key == block.key[j] && val == block.val[j]) {
+        Ans.push_back(block.val[j]);
       }
     }
   }
@@ -312,8 +310,6 @@ std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::find(Tkey key,Tvalue val) {
   file.close();
   return Ans;
 }
-
-
 
 template <class Tkey, class Tvalue>
 void MyMemoryClass<Tkey, Tvalue>::del(Tkey key, Tvalue val) {
@@ -387,13 +383,13 @@ void MyMemoryClass<Tkey, Tvalue>::del(Tkey key) {
   // std::cerr<<H.blocknum<<'\n';
   int las = 0, beg = H.blocknum;
   for (int i = 0; i < H.blocknum; i++) {
-    if (i && (key < H.indexkey[i] )) {
+    if (i && (key < H.indexkey[i])) {
       break;
     }
     las = i;
   }
   for (int i = H.blocknum - 1; i >= 0; i--) {
-    if ((i == 0) || (key > H.indexkey[i] )) {
+    if ((i == 0) || (key > H.indexkey[i])) {
       beg = i;
       break;
     }
@@ -431,11 +427,11 @@ void MyMemoryClass<Tkey, Tvalue>::del(Tkey key) {
 }
 
 template <class Tkey, class Tvalue>
-std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::findsegment(Tkey L,Tkey R)
-{
+std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::findsegment(Tkey L, Tkey R) {
   // std::cerr<<key.tostr()<<'\n';
   std::vector<Tvalue> Ans;
-  if(L>R)return Ans;
+  if (L > R)
+    return Ans;
   file.open(file_name, std::ios::out | std::ios::in);
   Head H;
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
@@ -466,7 +462,7 @@ std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::findsegment(Tkey L,Tkey R)
     file.seekg(H.index[i], std::ios::beg);
     file.read(reinterpret_cast<char *>(&block), sizeof(Block));
     for (int j = 0; j < block.itemnum; j++) {
-      if (L<= block.key[j]&&block.key[j]<=R) {
+      if (L <= block.key[j] && block.key[j] <= R) {
         Ans.push_back(block.val[j]);
       }
     }
@@ -476,13 +472,12 @@ std::vector<Tvalue> MyMemoryClass<Tkey, Tvalue>::findsegment(Tkey L,Tkey R)
   return Ans;
 }
 template <class Tkey, class Tvalue>
-int MyMemoryClass<Tkey, Tvalue>::chgaddtimes()
-{
+int MyMemoryClass<Tkey, Tvalue>::chgaddtimes() {
   file.open(file_name, std::ios::out | std::ios::in);
   Head H;
   file.read(reinterpret_cast<char *>(&H), sizeof(Head));
   H.addtimes++;
-  int tmp=H.addtimes;
+  int tmp = H.addtimes;
   file.seekp(0, std::ios::beg);
   file.write(reinterpret_cast<char *>(&H), sizeof(Head));
   file.close();

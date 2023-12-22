@@ -25,6 +25,9 @@ bool Readcommand()
     int typ=-1;
     if(!getline(std::cin,command))return false;
     // bool tmp=1;
+    // std::cerr<<"aaaaaaaaaaaaaaaaaa";
+    // std::cout<<"aaaaaaaasssssssssaaaaaaaaaa";
+    
     bool tmp=readcommand(command,oss,typ);
     // std::cerr<<tmp<<'\n';
     if(!tmp){
@@ -32,12 +35,13 @@ bool Readcommand()
         std::cout<<"Invalid\n";
         return true;
     }else{
+        
         //todo
         Logdata.addlog(typ,Log(userstack.back().first,userstack.back().second,command));
         string out=oss.str();
         if(out!=""&&typ!=(int)command_type::import){
             std::cout<<out;
-        }
+        }else std::cout<<"operation succeeded";
         if(typ==(int)command_type::buy){
             Logdata.chgbill(+stod(out));
         }else if(typ==(int)command_type::import){
