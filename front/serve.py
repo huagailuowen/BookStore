@@ -26,6 +26,25 @@ def menu():
         return render_template('menu.html',res=[[s for s in line.split('\t')]for line in res.split("\n")])
     # return redirect(url_for('success',name = user))
     return render_template('menu.html',res="\n")
+@app.route('/menu',methods = ['GET'])
+def menu():
+#    if request.method == 'POST':
+#       user = request.form['nm']
+#       return redirect(url_for('success',name = user))
+#    else:
+    if request.method == 'GET':
+        command = request.args.get('command')
+        p.stdin.write((command+"\n").encode())
+        p.stdin.flush()
+        # p.stdin.write(b'1\n')
+        # res=str(command)
+        res=str(p.stdout.read1().decode())
+        # if command!=None:
+        #     res+=str(command)
+        # res+="          hahaaaa 这里没有后端"
+        return render_template('menu.html',res=[[s for s in line.split('\t')]for line in res.split("\n")])
+    # return redirect(url_for('success',name = user))
+    return render_template('menu.html',res="\n")
 
 
 @app.route('/hello/<usr>')

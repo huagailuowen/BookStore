@@ -1,0 +1,156 @@
+{% extends "bootstrap/base.html" %}
+{%- block head %}
+<title>欢迎来到书店系统（搬的）</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+
+{%- block styles %}
+<!-- Bootstrap -->
+<link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+{#
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">#}
+<!-- bb——这里是通过下载网页上的css文件，保存在static目录下即可-->
+<link href="static/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<!-- bb——这里是通过下载网页上的css文件，保存在static目录下即可-->
+<link href="static/css/carousel.css" rel="stylesheet">
+{%- endblock styles %}
+{%- endblock head %}
+{% block body -%}
+{% block navbar %}
+<div class="navbar-wrapper">
+  <div class="container">
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+            aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Luowen的书店</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/exit">exit</a></li>
+            <li><a href="/qu">查询书籍</a></li>
+            <li><a href="/buy">购买书籍</a></li>
+            <li><a href="import">进购书籍</a></li>
+            <li><a href="/select">选择书籍</a></li>
+            <li><a href="/modi">更改书籍</a></li>
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">账户<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/regi">注册</a></li>
+                <li><a href="/login">登录</a></li>
+                <li><a href="/logout">登出</a></li>
+                <li><a href="/passwd">修改密码</a></li>
+                
+                <!-- <li role="separator" class="divider"></li>
+                      <li class="dropdown-header">Nav header</li>
+                      <li><a href="#">Separated link</a></li>
+                      <li><a href="#">One more separated link</a></li> -->
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false">系统查询<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/log">日志</a></li>
+                <li><a href="/emp">员工</a></li>
+                <li><a href="/finance">财务</a></li>
+                <li><a href="/count">最近账目</a></li>
+                <li><a href="/useradd">添加账户</a></li>
+                
+                <!-- <li role="separator" class="divider"></li>
+                      <li class="dropdown-header">Nav header</li>
+                      <li><a href="#">Separated link</a></li>
+                      <li><a href="#">One more separated link</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+</div>
+
+{%- endblock navbar %}
+{% block content -%}
+
+
+
+<div class="container marketing">
+
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    <div class="col-lg-12">
+      <span class="input-group-addon" id="sizing-addon2"><h3>请输入指令</h3></span>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="in" name="command">
+          <input type="text" class="form-control" placeholder="in" name="command1">
+          <input type="text" class="form-control" placeholder="in" name="command2">
+          
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <!-- <p>提供网络运维相关信息的展示；目前可提供IP地址查询、负载均衡对应关系查询、域名对应关系查询等</p> -->
+      <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
+    </div><!-- /.col-lg-4 -->
+   
+  </div><!-- /.row -->
+
+{%- endblock content %}
+{% block contentout -%}
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Result</div>
+    <!-- <div class="panel-body">
+      <p></p>
+    </div> -->
+  
+    <!-- Table -->
+    <table class="table">
+      {% for line in res %}
+         <tr>
+            <th> line: </th>
+            {% for s in line %}
+            <td> {{ s }} </td>
+            {%endfor%}
+        </tr>
+         {%endfor%}
+    </table>
+  </div>
+{%- endblock contentout %}
+  {% block scripts %}
+  <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+  <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  {#
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>#}
+  <script src="/static/js/jquery.min.js"></script>
+
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  {#
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+  <script src="/static/js/bootstrap.min.js"></script>
+
+
+  {%- endblock scripts %}
+
+  {%- endblock body %}
