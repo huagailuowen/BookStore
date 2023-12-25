@@ -31,11 +31,11 @@ def emp():
 def count():
     if request.method == 'GET':
         command =str(request.args.get('command'))
-        command1 =str(request.args.get('command1'))
-        p.stdin.write(('su '+command+' '+command1+"\n").encode())
+        # command1 =str(request.args.get('command1'))
+        p.stdin.write(('log '+command+"\n").encode())
         p.stdin.flush()
         res=str(p.stdout.read1().decode())
-        return render_template("2_in.html",res=[[s for s in line.split('\t')]for line in res.split("\n")])
+        return render_template("1_in.html",res=[[s for s in line.split('\t')]for line in res.split("\n")])
 @app.route('/login',methods = ['GET'])
 def login():
     if request.method == 'GET':
@@ -169,6 +169,7 @@ def select():
  
 @app.route('/exit')
 def exit ():
+    return redirect("https://ys.mihoyo.com/?utm_source=backup53&from_channel=backup53&msclkid=2fd1ac930e561e998585c9169e06de7b#/")
     return render_template("exit.html")
 
 @app.route('/')
@@ -180,7 +181,7 @@ def  logout ():
         
         p.stdin.write(('logout'+"\n").encode())
         p.stdin.flush()
-        res=str(p.stdout.read1().decode())
+        res=str(p.stdout.read1().decode()).split('\n')[0]
         return redirect('/base?res='+res,code=302,Response="aaaaa")
 
 @app.route('/base',methods = ['GET'])
@@ -189,7 +190,7 @@ def base():
         res=str(request.args.get('res'))
         return render_template('base.html',res=[[s for s in line.split('\t')]for line in res.split("\n")])
     # return redirect(url_for('success',name = user))
-    return render_template('base.html',res="\n")
+    return render_template('base.html',res=[])
 
 
 @app.route('/hello/<usr>')
